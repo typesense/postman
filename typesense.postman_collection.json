@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "edc94969-43df-4bb9-891f-3784323fa6f1",
-		"name": "Typesense-v0.21.0",
+		"name": "Typesense",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -526,14 +526,8 @@
 							}
 						],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "{\"id\": \"124\",\"company_name\": \"Stark Industries\",\"num_employees\": 5215,\"country\": \"USA\"}\n            {\"id\": \"125\",\"company_name\": \"Acme Corp\",\"num_employees\": 2133,\"country\": \"CA\"}",
-									"value": "",
-									"type": "text"
-								}
-							]
+							"mode": "raw",
+							"raw": "{\"id\": \"124\",\"company_name\": \"Stark Industries\",\"num_employees\": 5215,\"country\": \"USA\"}\n{\"id\": \"125\",\"company_name\": \"Acme Corp\",\"num_employees\": 2133,\"country\": \"CA\"}"
 						},
 						"url": {
 							"raw": "{{url}}/collections/{{collection_name}}/documents/import?action=create",
