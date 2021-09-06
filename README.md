@@ -6,7 +6,7 @@ If you tired of using the `curl` command in your terminal to test typesense api'
 
 Once you have downloaded the [Postman collection](Typesense-v0.21.0.postman_collection.json), you need to import it into Postman.
 
-![Collection import](/screenshots/import.png)
+![Collection import](/screenshots/Import.png)
 
 you should now be able to see the collection on to your left.
 
