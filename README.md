@@ -38,7 +38,7 @@ Update the `url` to point to your local or remote Typesense server:
 
 ![Edit url](/screenshots/set_api_url.png)
 
-### And that's it!
+### ✨ And that's it!
 
 You can now use the Postman collection to hit the Typesense APIs.
 
