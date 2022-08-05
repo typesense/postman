@@ -7,7 +7,7 @@ Thankfully, we've put together a <a href="https://www.postman.com/typesense/work
 There are two methods you can use our postman collection. One is from the postman public API directory and other is just download the json from this Github repository and import it to your postman. We have shared the steps below for both the methods.
 
 # Method - 1 - Importing from postman public API directory
-Navigate to this <a href="Typesense-v0.21.0.postman_collection.json" download="https://www.postman.com/typesense/workspace/typesense-api/overview">Postman collection</a>, login into your postman click on typesense on to the left and select fork. Forking creates a copy of the collection in your account. 
+Navigate to this <a href="typesense.postman_collection.json" download="https://www.postman.com/typesense/workspace/typesense-api/overview">Postman collection</a>, login into your postman click on typesense on to the left and select fork. Forking creates a copy of the collection in your account. 
 
 ![](/screenshots/Fork_1.png)
 
@@ -17,7 +17,7 @@ Give it a name and the workspace to which you want to import it.
 
 ## Import the environment
 
-We have provided the [Postman Environment](/Typesense-v0.21.0.postman_environment.json), you need to import that as well.
+We have provided the [Postman Environment](/typesense.postman_environment.json), you need to import that as well.
 
 ![Environment Import](/screenshots/env_import.png)
 ---
