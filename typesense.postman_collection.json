@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "edc94969-43df-4bb9-891f-3784323fa6f1",
+		"_postman_id": "1fd6bb39-51a8-4e36-9d2c-22c9c770a53c",
 		"name": "Typesense",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4484739"
 	},
 	"item": [
 		{
@@ -36,7 +37,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n         \"name\": \"companies\",\n         \"fields\": [\n           {\"name\": \"company_name\", \"type\": \"string\" },\n           {\"name\": \"num_employees\", \"type\": \"int32\" },\n           {\"name\": \"country\", \"type\": \"string\", \"facet\": true }\n         ],\n         \"default_sorting_field\": \"num_employees\"\n       }"
+							"raw": "{\n         \"name\": {{collection_name}},\n         \"fields\": [\n           {\"name\": \"company_name\", \"type\": \"string\" },\n           {\"name\": \"num_employees\", \"type\": \"int32\" },\n           {\"name\": \"country\", \"type\": \"string\", \"facet\": true }\n         ],\n         \"default_sorting_field\": \"num_employees\"\n       }"
 						},
 						"url": {
 							"raw": "{{url}}/collections",
@@ -118,7 +119,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Collection API [document](https://typesense.org/docs/0.24.1/api/collections.html#collections)."
 		},
 		{
 			"name": "Documents",
@@ -200,7 +202,73 @@
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "Geosearch API [document](https://typesense.org/docs/0.24.1/api/geosearch.html#geosearch)"
+				},
+				{
+					"name": "Presets",
+					"item": [
+						{
+							"name": "Create presets",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"value\": {\"searches\":[{\"collection\":\"products\",\"q\":\"*\", \"sort_by\": \"popularity\"}]}}"
+								},
+								"url": {
+									"raw": "{{url}}/presets/listing_view",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"presets",
+										"listing_view"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search preset",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/multi_search?preset=listing_view",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"multi_search"
+									],
+									"query": [
+										{
+											"key": "preset",
+											"value": "listing_view"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Preset API [document](https://typesense.org/docs/0.24.1/api/search.html#presets)"
 				},
 				{
 					"name": "Index a document",
@@ -588,7 +656,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Document API [document](https://typesense.org/docs/0.24.1/api/documents.html#documents)"
 		},
 		{
 			"name": "Api Keys",
@@ -703,7 +772,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Api key [Document](https://typesense.org/docs/0.24.1/api/api-keys.html#api-keys)"
 		},
 		{
 			"name": "Curation",
@@ -815,7 +885,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Curation API [document](https://typesense.org/docs/0.24.1/api/curation.html#curation)"
 		},
 		{
 			"name": "Collection Alias",
@@ -919,7 +990,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Collection ALIAS [document](https://typesense.org/docs/0.24.1/api/collection-alias.html#collection-alias)"
 		},
 		{
 			"name": "Synonyms",
@@ -1030,7 +1102,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Synonyms API [document](https://typesense.org/docs/0.24.1/api/synonyms.html#synonyms)"
 		},
 		{
 			"name": "Cluster Operations",
@@ -1187,7 +1260,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Operations [document](https://typesense.org/docs/0.24.1/api/cluster-operations.html#cluster-operations)"
 		}
 	]
 }
