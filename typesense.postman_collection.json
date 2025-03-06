@@ -273,6 +273,277 @@
 					"description": "Vector Search API [document](https://typesense.org/docs/28.0/api/vector-search.html)"
 				},
 				{
+					"name": "JOINs",
+					"item": [
+						{
+							"name": "Create authors collection",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"authors\",\n  \"fields\": [\n    {\"name\": \"first_name\", \"type\": \"string\"},\n    {\"name\": \"last_name\", \"type\": \"string\"}\n  ]\n}"
+								},
+								"url": {
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"collections"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create books collection with reference",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"books\",\n  \"fields\": [\n    {\"name\": \"title\", \"type\": \"string\"},\n    {\"name\": \"author_id\", \"type\": \"string\", \"reference\": \"authors.id\"}\n  ]\n}"
+								},
+								"url": {
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"collections"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Index an author",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"first_name\": \"Enid\",\n  \"last_name\": \"Blyton\"\n}"
+								},
+								"url": {
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"collections",
+										"authors",
+										"documents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Index a book",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"Famous Five\",\n  \"author_id\": \"0\"\n}"
+								},
+								"url": {
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"collections",
+										"books",
+										"documents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search books with joined author (One-to-One)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"searches\": [\n    {\n      \"collection\": \"books\",\n      \"q\": \"famous\",\n      \"query_by\": \"title\",\n      \"include_fields\": \"$authors(first_name,last_name)\"\n    }\n  ]\n}"
+								},
+								"url": {
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"multi_search"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create customers collection",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"customers\",\n  \"fields\": [\n    {\"name\": \"forename\", \"type\": \"string\"},\n    {\"name\": \"surname\", \"type\": \"string\"},\n    {\"name\": \"email\", \"type\": \"string\"}\n  ]\n}"
+								},
+								"url": {
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"collections"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create orders collection with reference",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"orders\",\n  \"fields\": [\n    {\"name\": \"total_price\", \"type\": \"float\"},\n    {\"name\": \"initial_date\", \"type\": \"int64\"},\n    {\"name\": \"accepted_date\", \"type\": \"int64\", \"optional\": true},\n    {\"name\": \"completed_date\", \"type\": \"int64\", \"optional\": true},\n    {\"name\": \"customer_id\", \"type\": \"string\", \"reference\": \"customers.id\"}\n  ]\n}"
+								},
+								"url": {
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"collections"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search customers with joined orders (One-to-Many)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"searches\": [\n    {\n      \"collection\": \"customers\",\n      \"q\": \"*\",\n      \"filter_by\": \"$orders(total_price:<100)\",\n      \"include_fields\": \"$orders(total_price)\"\n    }\n  ]\n}"
+								},
+								"url": {
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"multi_search"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search authors with books (Nested Array)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"searches\": [\n    {\n      \"collection\": \"authors\",\n      \"q\": \"*\",\n      \"filter_by\": \"$books(id:*)\",\n      \"include_fields\": \"$books(*, strategy: nest_array)\"\n    }\n  ]\n}"
+								},
+								"url": {
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"multi_search"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "JOINs API [document](https://typesense.org/docs/28.0/api/joins.html)"
+				},
+				{
 					"name": "Geosearch",
 					"item": [
 						{
