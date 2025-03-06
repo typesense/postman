@@ -1253,6 +1253,146 @@
 			"description": "Synonyms API [document](https://typesense.org/docs/28.0/api/synonyms.html#synonyms)"
 		},
 		{
+			"name": "Stopwords",
+			"item": [
+				{
+					"name": "Create or update a stopwords set",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-TYPESENSE-API-KEY",
+								"value": "{{TYPESENSE_API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"stopwords\": [\"Germany\", \"France\", \"Italy\", \"United States\"],\n    \"locale\": \"en\"\n}"
+						},
+						"url": {
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"stopwords",
+								"{{stopword_set_name}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all stopwords sets",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-TYPESENSE-API-KEY",
+								"value": "{{TYPESENSE_API_KEY}}"
+							}
+						],
+						"url": {
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"stopwords"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a stopwords set",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-TYPESENSE-API-KEY",
+								"value": "{{TYPESENSE_API_KEY}}"
+							}
+						],
+						"url": {
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"stopwords",
+								"{{stopword_set_name}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a stopwords set",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-TYPESENSE-API-KEY",
+								"value": "{{TYPESENSE_API_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/stopwords/{{stopword_set_name}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"stopwords",
+								"{{stopword_set_name}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search with stopwords",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-TYPESENSE-API-KEY",
+								"value": "{{TYPESENSE_API_KEY}}"
+							}
+						],
+						"url": {
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"collections",
+								"{{collection_name}}",
+								"documents",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "united states"
+								},
+								{
+									"key": "query_by",
+									"value": "country"
+								},
+								{
+									"key": "stopwords",
+									"value": "{{stopword_set_name}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Stopwords API [document](https://typesense.org/docs/28.0/api/stopwords.html#stopwords)"
+		},
+		{
 			"name": "Cluster Operations",
 			"item": [
 				{
