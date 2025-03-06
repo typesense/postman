@@ -155,6 +155,124 @@
 			"name": "Documents",
 			"item": [
 				{
+					"name": "Semantic Search",
+					"item": [
+						{
+							"name": "Collection create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"postman.setEnvironmentVariable(\"embedding_collection_name\", jsonData.name);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n \"name\": \"products\",\n \"fields\": [\n {\n \"name\": \"product_name\",\n \"type\": \"string\"\n },\n {\n \"name\": \"embedding\",\n \"type\": \"float[]\",\n \"embed\": {\n \"from\": [\n \"product_name\"\n ],\n \"model_config\": {\n \"model_name\": \"ts/all-MiniLM-L12-v2\"\n }\n }\n }\n]}"
+								},
+								"url": {
+									"raw": "{{url}}/collections",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"collections"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Index  a doc",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"product_name\": \"French Press\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/collections/{{embedding_collection_name}}/documents",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"collections",
+										"{{embedding_collection_name}}",
+										"documents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"url": {
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"collections",
+										"{{embedding_collection_name}}",
+										"documents",
+										"search"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "Coffee Maker"
+										},
+										{
+											"key": "query_by",
+											"value": "product_name"
+										},
+										{
+											"key": "exclude_fields",
+											"value": "embedding"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Vector Search API [document](https://typesense.org/docs/28.0/api/vector-search.html)"
+				},
+				{
 					"name": "Geosearch",
 					"item": [
 						{
