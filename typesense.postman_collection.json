@@ -120,7 +120,7 @@
 					"response": []
 				}
 			],
-			"description": "Collection API [document](https://typesense.org/docs/0.24.1/api/collections.html#collections)."
+			"description": "Collection API [document](https://typesense.org/docs/28.0/api/collections.html#collections)."
 		},
 		{
 			"name": "Documents",
@@ -203,7 +203,7 @@
 							"response": []
 						}
 					],
-					"description": "Geosearch API [document](https://typesense.org/docs/0.24.1/api/geosearch.html#geosearch)"
+					"description": "Geosearch API [document](https://typesense.org/docs/28.0/api/geosearch.html#geosearch)"
 				},
 				{
 					"name": "Presets",
@@ -268,7 +268,7 @@
 							"response": []
 						}
 					],
-					"description": "Preset API [document](https://typesense.org/docs/0.24.1/api/search.html#presets)"
+					"description": "Preset API [document](https://typesense.org/docs/28.0/api/search.html#presets)"
 				},
 				{
 					"name": "Index a document",
@@ -657,7 +657,7 @@
 					"response": []
 				}
 			],
-			"description": "Document API [document](https://typesense.org/docs/0.24.1/api/documents.html#documents)"
+			"description": "Document API [document](https://typesense.org/docs/28.0/api/documents.html#documents)"
 		},
 		{
 			"name": "Api Keys",
@@ -773,7 +773,7 @@
 					"response": []
 				}
 			],
-			"description": "Api key [Document](https://typesense.org/docs/0.24.1/api/api-keys.html#api-keys)"
+			"description": "Api key [Document](https://typesense.org/docs/28.0/api/api-keys.html#api-keys)"
 		},
 		{
 			"name": "Curation",
@@ -886,7 +886,7 @@
 					"response": []
 				}
 			],
-			"description": "Curation API [document](https://typesense.org/docs/0.24.1/api/curation.html#curation)"
+			"description": "Curation API [document](https://typesense.org/docs/28.0/api/curation.html#curation)"
 		},
 		{
 			"name": "Collection Alias",
@@ -991,7 +991,7 @@
 					"response": []
 				}
 			],
-			"description": "Collection ALIAS [document](https://typesense.org/docs/0.24.1/api/collection-alias.html#collection-alias)"
+			"description": "Collection ALIAS [document](https://typesense.org/docs/28.0/api/collection-alias.html#collection-alias)"
 		},
 		{
 			"name": "Synonyms",
@@ -1103,7 +1103,7 @@
 					"response": []
 				}
 			],
-			"description": "Synonyms API [document](https://typesense.org/docs/0.24.1/api/synonyms.html#synonyms)"
+			"description": "Synonyms API [document](https://typesense.org/docs/28.0/api/synonyms.html#synonyms)"
 		},
 		{
 			"name": "Cluster Operations",
@@ -1261,7 +1261,7 @@
 					"response": []
 				}
 			],
-			"description": "Operations [document](https://typesense.org/docs/0.24.1/api/cluster-operations.html#cluster-operations)"
+			"description": "Operations [document](https://typesense.org/docs/28.0/api/cluster-operations.html#cluster-operations)"
 		}
 	]
 }
