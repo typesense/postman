@@ -118,6 +118,35 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Truncate a collection",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-TYPESENSE-API-KEY",
+								"value": "{{TYPESENSE_API_KEY}}"
+							}
+						],
+						"url": {
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"collections",
+								"{{collection_name}}",
+								"documents"
+							],
+							"query": [
+								{
+									"key": "truncate",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"description": "Collection API [document](https://typesense.org/docs/28.0/api/collections.html#collections)."
