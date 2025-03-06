@@ -947,6 +947,150 @@
 			"description": "Document API [document](https://typesense.org/docs/28.0/api/documents.html#documents)"
 		},
 		{
+			"name": "Analytics & Query Suggestions",
+			"item": [
+				{
+					"name": "Create analytics collection",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-TYPESENSE-API-KEY",
+								"value": "{{TYPESENSE_API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"{{analytics_collection_name}}\",\n  \"fields\": [\n    {\"name\": \"q\", \"type\": \"string\" },\n    {\"name\": \"count\", \"type\": \"int32\" }\n  ]\n}"
+						},
+						"url": {
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"collections"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create analytics rule",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-TYPESENSE-API-KEY",
+								"value": "{{TYPESENSE_API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"{{analytics_rule_name}}\",\n  \"type\": \"popular_queries\",\n  \"params\": {\n    \"source\": {\n      \"collections\": [\"{{collection_name}}\"]\n    },\n    \"destination\": {\n      \"collection\": \"{{analytics_collection_name}}\"\n    },\n    \"limit\": 1000\n  }\n}"
+						},
+						"url": {
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"analytics",
+								"rules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all analytics rules",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-TYPESENSE-API-KEY",
+								"value": "{{TYPESENSE_API_KEY}}"
+							}
+						],
+						"url": {
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"analytics",
+								"rules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an analytics rule",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-TYPESENSE-API-KEY",
+								"value": "{{TYPESENSE_API_KEY}}"
+							}
+						],
+						"url": {
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"analytics",
+								"rules",
+								"{{analytics_rule_name}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search with query suggestions",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-TYPESENSE-API-KEY",
+								"value": "{{TYPESENSE_API_KEY}}"
+							},
+							{
+								"key": "X-TYPESENSE-USER-ID",
+								"value": "user123",
+								"description": "Optional user identifier for analytics"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"searches\": [\n    {\n      \"collection\": \"{{analytics_collection_name}}\",\n      \"q\": \"shoe\",\n      \"query_by\": \"q\"\n    },\n    {\n      \"collection\": \"{{collection_name}}\",\n      \"q\": \"shoe\",\n      \"query_by\": \"company_name\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"multi_search"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Analytics & Query Suggestions API [document](https://typesense.org/docs/28.0/api/analytics-query-suggestions.html)"
+		},
+		{
 			"name": "Api Keys",
 			"item": [
 				{
