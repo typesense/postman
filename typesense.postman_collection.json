@@ -353,6 +353,146 @@
 					"description": "Geosearch API [document](https://typesense.org/docs/28.0/api/geosearch.html#geosearch)"
 				},
 				{
+					"name": "Image Search",
+					"item": [
+						{
+							"name": "Create collection with image field",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"postman.setEnvironmentVariable(\"image_collection_name\", jsonData.name);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"images\",\n  \"fields\": [\n    {\n      \"name\": \"name\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"image\",\n      \"type\": \"image\",\n      \"store\": false\n    },\n    {\n      \"name\": \"embedding\",\n      \"type\": \"float[]\",\n      \"embed\": {\n        \"from\": [\n          \"image\"\n        ],\n        \"model_config\": {\n          \"model_name\": \"ts/clip-vit-b-p32\"\n        }\n      }\n    }\n  ]\n}"
+								},
+								"url": {
+									"raw": "{{url}}/collections",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"collections"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Index document with image",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"an image with a dog\",\n    \"image\": \"<base64 encoded string of the image>\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/collections/{{image_collection_name}}/documents",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"collections",
+										"{{image_collection_name}}",
+										"documents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search for images with description",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"searches\": [\n    {\n      \"collection\": \"{{image_collection_name}}\",\n      \"q\": \"animals\",\n      \"query_by\": \"embedding\"\n    }\n  ]\n}"
+								},
+								"url": {
+									"raw": "{{url}}/multi_search",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"multi_search"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search for similar images",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TYPESENSE-API-KEY",
+										"value": "{{TYPESENSE_API_KEY}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"searches\": [\n    {\n      \"collection\": \"{{image_collection_name}}\",\n      \"q\": \"*\",\n      \"vector_query\": \"embedding:([], id:123)\"\n    }\n  ]\n}"
+								},
+								"url": {
+									"raw": "{{url}}/multi_search",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"multi_search"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Image Search API [document](https://typesense.org/docs/28.0/api/image-search.html)"
+				},
+				{
 					"name": "Presets",
 					"item": [
 						{
